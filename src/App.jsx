@@ -37,47 +37,82 @@ function App() {
   const [highNodeCount, setHighNodeCount] = useState(101);
   let nodeCounts = [lowNodeCount, nodeCount, highNodeCount, 10, 15, 20, 30, 40, 50, 60, 70, 80, 90, 100]
 
-  G6.registerEdge(
-    'circle-running',
-    {
-      afterDraw(cfg, group) {
-        // get the first shape in the group, it is the edge's path here=
-        const shape = group.get('children')[0];
-        // the start position of the edge's path
-        const startPoint = shape.getPoint(0);
+  function registerEdge(edgeType, direction, duration, color, poly) {
+    G6.registerEdge(
+      edgeType,
+      {
+        afterDraw(cfg, group) {
+          const shape = group.get('children')[0];
+          const startPoint = shape.getPoint(0);
+          let polyshape
+
+          if (poly === "circle"){
+            polyshape = group.addShape(poly, {
+              attrs: {
+                x: startPoint.x,
+                y: startPoint.y,
+                fill: color,
+                r: 8,
+              },
+              name: 'circle-shape',
+            });
+          } else if (poly === "rect"){
+            let sideLength = 10;
+            polyshape = group.addShape('polygon', {
+              attrs: {
+                // x: startPoint.x,
+                // y: startPoint.y,
+                points: [
+                  [startPoint.x, startPoint.y], // top-left point
+                  [startPoint.x, startPoint.y + sideLength], // bottom-left point
+                  [startPoint.x + sideLength, startPoint.y + sideLength], // bottom-right point
+                  [startPoint.x + sideLength, startPoint.y], // top-right point
+                ],
+                // width: 10,
+                // height: 10,
+                fill: color,
+              },
+              name: 'rect-shape',
+            });
+
+          }
+          
   
-        // add red circle shape
-        const circle = group.addShape('circle', {
-          attrs: {
-            x: startPoint.x,
-            y: startPoint.y,
-            fill: '#1890ff',
-            r: 3,
-          },
-          name: 'circle-shape',
-        });
-  
-        // animation for the red circle
-        circle.animate(
-          (ratio) => {
-            // the operations in each frame. Ratio ranges from 0 to 1 indicating the prograss of the animation. Returns the modified configurations
-            // get the position on the edge according to the ratio
-            const tmpPoint = shape.getPoint(ratio);
-            // returns the modified configurations here, x and y here
-            return {
-              x: tmpPoint.x,
-              y: tmpPoint.y,
-            };
-          },
-          {
-            repeat: true, // Whether executes the animation repeatly
-            duration: 3000, // the duration for executing once
-          },
-        );
+          polyshape.animate(
+            (ratio) => {
+              // if direction is 1, set ratio to 1 - ratio, else use ratio
+              const r = direction ? 1 - ratio : ratio;
+              const tmpPoint = shape.getPoint(r);
+              let sideLength = 10;
+              let halfSideLength = sideLength / 2;
+
+              let points = [
+                  [tmpPoint.x - halfSideLength, tmpPoint.y - halfSideLength], // top-left point
+                  [tmpPoint.x - halfSideLength, tmpPoint.y + halfSideLength], // bottom-left point
+                  [tmpPoint.x + halfSideLength, tmpPoint.y + halfSideLength], // bottom-right point
+                  [tmpPoint.x + halfSideLength, tmpPoint.y - halfSideLength], // top-right point
+              ];
+              return {
+                x: tmpPoint.x,
+                y: tmpPoint.y,
+                points: points,
+              };
+            },
+            {
+              repeat: true,
+              duration: duration,
+            },
+          );
+        },
       },
-    },
-    'cubic', // extend the built-in edge 'cubic'
-  );
+      'quadratic',
+    );
+  }
+
+  registerEdge('circle-running-slow-start', 0, 3000, '#fa541c', "circle");
+  registerEdge('circle-running-fast-start', 0, 1000, '#fa541c', "circle");
+  registerEdge('circle-running-slow-end', 1, 3000, '#1890FF', "rect");
+  registerEdge('circle-running-fast-end', 1, 1000, '#1890FF', "rect");
 
   const handleNodeCountChange = (event) => {
     const value = parseInt(event.target.value, 10);
@@ -212,6 +247,9 @@ function App() {
             <div className="graph-container" ref={graphContainerRef}>
               <Graphin
                 animate
+                animateCfg={ {
+                  easing: 'easePolyInOut', // String, the easing function
+                }}
                 containerId="app-graph"
                 // containerStyle={{margin: "24px"}}
                 data={graphDataFiltered}
@@ -239,16 +277,16 @@ function App() {
                     stroke: "#5B8FF9",
                   }
                 }}
-                defaultEdge={{
-                  type: "quadratic"
-                }}
                 // defaultEdge={{
-                //   type: 'circle-running',
-                //   style: {
-                //     lineWidth: 2,
-                //     stroke: '#bae7ff',
-                //   },
-                //   }}
+                //   type: "quadratic"
+                // }}
+                defaultEdge={{
+                  type: 'quadratic',
+                  style: {
+                    lineWidth: 2,
+                    stroke: '#bae7ff',
+                  },
+                  }}
               ></Graphin>
             </div>
           </div>

@@ -19,13 +19,75 @@ const graphData = {
         }
     ],
     edges: [
-        { source: "1", style: { endArrow: { fill: "#434343", path: "M 0,-5 \n L 10,-5 \n L 10,5 \n L 0,5 Z", }, stroke: "#434343", }, target: "salesforce", },
-        { source: "2", style: { endArrow: { fill: "#434343", path: "M 0,-5 \n L 10,-5 \n L 10,5 \n L 0,5 Z", }, stroke: "#434343", }, target: "salesforce", },
-        { source: "3", style: { endArrow: { fill: "#434343", path: "M 0,-5 \n L 10,-5 \n L 10,5 \n L 0,5 Z", }, stroke: "#434343", }, target: "salesforce", },
-        { source: "4", style: { endArrow: { fill: "#434343", path: "M 0,-5 \n L 10,-5 \n L 10,5 \n L 0,5 Z", }, stroke: "#434343", }, target: "salesforce", },
-        { source: "5", style: { endArrow: { fill: "#434343", path: "M 0,-5 \n L 10,-5 \n L 10,5 \n L 0,5 Z", }, stroke: "#434343", }, target: "salesforce", },
-        { source: "6", style: { endArrow: { fill: "#434343", path: "M 0,-5 \n L 10,-5 \n L 10,5 \n L 0,5 Z", }, stroke: "#434343", }, target: "salesforce", },
-        // Additional edges pointing to "salesforce" node
+        { 
+            source: "1", 
+            style: { 
+                endArrow: { 
+                    fill: "#434343", 
+                    path: "M 0,-5 \n L 10,-5 \n L 10,5 \n L 0,5 Z", }, 
+                    stroke: "#434343", 
+                },
+            type:"circle-running-slow-start",
+            target: "salesforce", 
+        },
+        { 
+            source: "2", 
+            style: { 
+                endArrow: { 
+                    fill: "#434343", 
+                    path: "M 0,-5 \n L 10,-5 \n L 10,5 \n L 0,5 Z", 
+                }, 
+                stroke: "#434343", 
+            },
+            type:"circle-running-fast-start",
+            target: "salesforce", 
+        },
+        { 
+            source: "3", 
+            style: { 
+                endArrow: { 
+                    fill: "#434343", 
+                    path: "M 0,-5 \n L 10,-5 \n L 10,5 \n L 0,5 Z", 
+                }, 
+                stroke: "#434343", 
+            },
+            type:"circle-running-slow-end",
+            target: "salesforce", 
+        },
+        { 
+            source: "4", 
+            style: { 
+                endArrow: { 
+                    fill: "#434343", 
+                    path: "M 0,-5 \n L 10,-5 \n L 10,5 \n L 0,5 Z", 
+                }, 
+                stroke: "#434343", 
+            },
+            type:"circle-running-fast-end",
+            target: "salesforce", 
+        },
+        { 
+            source: "5", 
+            style: { 
+                endArrow: { 
+                    fill: "#434343", 
+                    path: "M 0,-5 \n L 10,-5 \n L 10,5 \n L 0,5 Z", 
+                }, 
+                stroke: "#434343", 
+            },
+            target: "salesforce", 
+        },
+        { 
+            source: "6", 
+            style: { 
+                endArrow: { 
+                    fill: "#434343", 
+                    path: "M 0,-5 \n L 10,-5 \n L 10,5 \n L 0,5 Z", 
+                }, 
+                stroke: "#434343", 
+            },
+            target: "salesforce", 
+        }, // Additional edges pointing to "salesforce" node
         { source: "7", style: { endArrow: { fill: "#434343", path: "M 0,-5 \n L 10,-5 \n L 10,5 \n L 0,5 Z", }, stroke: "#434343", }, target: "salesforce", },
         { source: "8", style: { endArrow: { fill: "#434343", path: "M 0,-5 \n L 10,-5 \n L 10,5 \n L 0,5 Z", }, stroke: "#434343", }, target: "salesforce", },
         { source: "9", style: { endArrow: { fill: "#434343", path: "M 0,-5 \n L 10,-5 \n L 10,5 \n L 0,5 Z", }, stroke: "#434343", }, target: "salesforce", },
