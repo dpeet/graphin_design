@@ -6,7 +6,7 @@ import G6 from '@antv/g6';
 import Graphin from "@antv/graphin";
 import graphDataRaw from "./graphData";
 
-// 30 Nodes, 6 sets of 5 combos
+// TODO 30 Nodes, 6 sets of 5 combos
 
 function App() {
   const layout = {
@@ -118,11 +118,9 @@ function App() {
 
   useEffect(() => {
     if (graphContainerRef.current) {
-      const rect = graphContainerRef.current.getBoundingClientRect();
-      const centerX = (rect.left + rect.right) / 2;
-      const centerY = (rect.top + rect.bottom) / 2;
-
-      console.log(centerX, centerY);
+      // const rect = graphContainerRef.current.getBoundingClientRect();
+      // const centerX = (rect.left + rect.right) / 2;
+      // const centerY = (rect.top + rect.bottom) / 2;
 
       // Update the layout of the graph using centerX and centerY
       setLayoutOptions({
