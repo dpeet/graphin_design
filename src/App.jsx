@@ -45,6 +45,7 @@ function App() {
           const shape = group.get('children')[0];
           const startPoint = shape.getPoint(0);
           let polyshape
+          let sideLength = 16;
 
           if (poly === "circle"){
             polyshape = group.addShape(poly, {
@@ -57,7 +58,6 @@ function App() {
               name: 'circle-shape',
             });
           } else if (poly === "rect"){
-            let sideLength = 10;
             polyshape = group.addShape('polygon', {
               attrs: {
                 // x: startPoint.x,
@@ -76,14 +76,12 @@ function App() {
             });
 
           }
-          
-  
+            
           polyshape.animate(
             (ratio) => {
               // if direction is 1, set ratio to 1 - ratio, else use ratio
               const r = direction ? 1 - ratio : ratio;
               const tmpPoint = shape.getPoint(r);
-              let sideLength = 10;
               let halfSideLength = sideLength / 2;
 
               let points = [
@@ -103,16 +101,73 @@ function App() {
               duration: duration,
             },
           );
+
+          if (direction) {
+            let polyshape2
+            if (poly === "circle"){
+              polyshape2 = group.addShape(poly, {
+                attrs: {
+                  x: startPoint.x,
+                  y: startPoint.y,
+                  fill: color,
+                  r: 8,
+                },
+                name: 'circle-shape',
+              });
+            } else if (poly === "rect"){
+              polyshape2 = group.addShape('polygon', {
+                attrs: {
+                  // x: startPoint.x,
+                  // y: startPoint.y,
+                  points: [
+                    [startPoint.x, startPoint.y], // top-left point
+                    [startPoint.x, startPoint.y + sideLength], // bottom-left point
+                    [startPoint.x + sideLength, startPoint.y + sideLength], // bottom-right point
+                    [startPoint.x + sideLength, startPoint.y], // top-right point
+                  ],
+                  // width: 10,
+                  // height: 10,
+                  fill: color,
+                },
+                name: 'rect-shape',
+              });
+            }
+            polyshape2.animate(
+              (ratio) => {
+                // if direction is 1, set ratio to 1 - ratio, else use ratio
+                const r = direction ? ratio: 1 - ratio;
+                const tmpPoint = shape.getPoint(r);
+                let halfSideLength = sideLength / 2;
+
+                let points = [
+                    [tmpPoint.x - halfSideLength, tmpPoint.y - halfSideLength], // top-left point
+                    [tmpPoint.x - halfSideLength, tmpPoint.y + halfSideLength], // bottom-left point
+                    [tmpPoint.x + halfSideLength, tmpPoint.y + halfSideLength], // bottom-right point
+                    [tmpPoint.x + halfSideLength, tmpPoint.y - halfSideLength], // top-right point
+                ];
+                return {
+                  x: tmpPoint.x,
+                  y: tmpPoint.y,
+                  points: points,
+                };
+              },
+              {
+                repeat: true,
+                duration: duration,
+              },
+            );
+          }
+
         },
       },
       'quadratic',
     );
   }
 
-  registerEdge('circle-running-slow-start', 0, 3000, '#fa541c', "circle");
-  registerEdge('circle-running-fast-start', 0, 1000, '#fa541c', "circle");
-  registerEdge('circle-running-slow-end', 1, 3000, '#1890FF', "rect");
-  registerEdge('circle-running-fast-end', 1, 1000, '#1890FF', "rect");
+  registerEdge('circle-running-slow-start', 0, 3000, '#fa541cCC', "circle");
+  registerEdge('circle-running-fast-start', 0, 1000, '#fa541cCC', "circle");
+  registerEdge('circle-running-slow-end', 1, 3000, '#1890FFCC', "rect");
+  registerEdge('circle-running-fast-end', 1, 1000, '#1890FFCC', "rect");
 
   const handleNodeCountChange = (event) => {
     const value = parseInt(event.target.value, 10);
