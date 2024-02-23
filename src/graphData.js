@@ -1,4 +1,4 @@
-import salesforceLogo from "./assets/salesforce-logo.png";
+import salesforceLogo from "./assets/salesforce-logo-padding.png";
 
 const graphData = {
     combos: [

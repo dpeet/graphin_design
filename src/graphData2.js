@@ -3,7 +3,7 @@ const graphData2 = {
         {
             "id": "salesforce",
             "type": "image",
-            "img": "/src/assets/salesforce-logo.png",
+            "img": "/src/assets/salesforce-logo-padding.png",
             "size": [
                 96,
                 67.5
@@ -2267,3 +2267,69 @@ const graphData2 = {
 }
 
 export default graphData2;
+// Generated with
+
+// const generateHighComboGraphData = (targetNodes) => {
+//     const graphData = { nodes: [], combos: [], edges: [] };
+//     graphData.nodes.push({
+//       id: "salesforce", type: "image", img: salesforceLogo, size:[96,67.5]
+//     })
+//     let totalNodes = 1;
+    
+//     for (let i = 0; totalNodes < targetNodes; i++) {
+//       const comboId = `combo${i}`;
+//       // Random number between 5 and 10, but not exceeding targetNodes
+//       const nodeCount = Math.min(Math.floor(Math.random() * 3) + 5, targetNodes - totalNodes); 
+  
+//       // Add combo
+//       graphData.combos.push({
+//         id: comboId,
+//         // label: `Combo ${i}`,
+//         type: "rect",
+//         style: {
+//           fill: "#1abc9c19",
+//           stroke: "#1abc9c",
+//         },
+//       });
+  
+//       // Add nodes
+//       for (let j = 0; j < nodeCount; j++) {
+//         const nodeId = `node${i}${j}`;
+//         graphData.nodes.push({
+//           id: nodeId,
+//           label: `Node ${i}-${j}`,
+//           comboId: comboId,
+//           size: [140, 40],
+//           type:"rect",
+//           style: { 
+//             endArrow: { 
+//                 fill: "#434343", 
+//                 path: "M 0,-5 \n L 10,-5 \n L 10,5 \n L 0,5 Z", 
+//             }, 
+//             stroke: "#434343", 
+//         },
+//         });
+//         // Add edges
+
+//         const edgeOptions = ["read-low", "read-high", "readwrite-low", "readwrite-high"];
+//         graphData.edges.push({
+//           source: nodeId,
+//           target: "salesforce",
+//           type: edgeOptions[Math.floor(Math.random() * 4)],
+//           style: { 
+//             endArrow: { 
+//                 fill: "#434343", 
+//                 path: "M 0,-5 \n L 10,-5 \n L 10,5 \n L 0,5 Z", }, 
+//                 stroke: "#434343", 
+//             },
+//         });
+//       }
+//       totalNodes += nodeCount;
+//     }
+
+//     if (targetNodes === 75 ){
+//       console.log(graphData);
+//     }
+  
+//     return graphData;
+//   };
