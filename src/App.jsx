@@ -7,6 +7,7 @@ import Graphin from "@antv/graphin";
 import graphDataRaw from "./graphData";
 
 // TODO 30 Nodes, 6 sets of 5 combos
+// TODO update graph layout controls to use functions based on number of nodes
 
 function App() {
   const layout = {
@@ -35,139 +36,107 @@ function App() {
   const [graphData, setGraphData] = useState(graphDataRaw);
   const [lowNodeCount, setLowNodeCount] = useState(7);
   const [highNodeCount, setHighNodeCount] = useState(101);
+  const lowNodeCount = 7;
+  const highNodeCount = 101;
   let nodeCounts = [lowNodeCount, nodeCount, highNodeCount, 10, 15, 20, 30, 40, 50, 60, 70, 80, 90, 100]
 
-  function registerEdge(edgeType, direction, duration, color, poly) {
+  const registerEdge = (edgeType) => {
+    let permissions
+    let volume
+    // the options for edgeType are read-low, read-high, readwrite-low, readwrite-high.  The first word is the permission and the second word is the volume
+    let edgeTypeArray = edgeType.split("-");
+    if (edgeTypeArray[0] === "read") {
+      permissions = "read"
+    } else if (edgeTypeArray[0] === "readwrite"){
+      permissions = "readwrite"
+    } else {
+      console.error("Invalid edgeType " + edgeType);
+    }
+
+    if (edgeTypeArray[1] === "low") {
+      volume = "low"
+    } else if (edgeTypeArray[1] === "high"){
+      volume = "high"
+    } else {
+      console.error("Invalid edgeType " + edgeType);
+    }
+
     G6.registerEdge(
       edgeType,
       {
         afterDraw(cfg, group) {
+          // Get the first graphics shape of this type of edge, which is the edge's path
           const shape = group.get('children')[0];
+          // The start point of the edge's path
           const startPoint = shape.getPoint(0);
-          let polyshape
-          let sideLength = 16;
+          
+          let circleCount = volume === "low" ? 1 : 2;
+          let readColor = "#1890FF";
+          let writeColor = "#fa541c";
+          let radius = 5;
 
-          if (poly === "circle"){
-            polyshape = group.addShape(poly, {
+          // create an array called combinations. 
+          let combinations = []
+          // create elements in the combination array.  use the pair ["permission", "circleCountIndex"].  for example read-high would be [["read", 0], ["read", 1]]
+          for (let i = 0; i < circleCount; i++){
+            combinations.push(["read", i]);
+          }
+          if (permissions === "readwrite") {
+            for (let i = 0; i < circleCount; i++){
+              combinations.push(["readwrite", i]);
+            }
+          }
+          // if permission is read, create circleCount number of circles using the ratio.  If permission is readwrite, create circleCount number of circles using the ratio and circleCount number using the inverse of the ratio
+          combinations.map((combination) => {
+            const [permission, circleCountIndex] = combination;
+            const color = permission === "read" ? readColor : writeColor;
+            const circle = group.addShape('circle', {
               attrs: {
                 x: startPoint.x,
                 y: startPoint.y,
                 fill: color,
-                r: 8,
+                r: radius,
               },
               name: 'circle-shape',
             });
-          } else if (poly === "rect"){
-            polyshape = group.addShape('polygon', {
-              attrs: {
-                // x: startPoint.x,
-                // y: startPoint.y,
-                points: [
-                  [startPoint.x, startPoint.y], // top-left point
-                  [startPoint.x, startPoint.y + sideLength], // bottom-left point
-                  [startPoint.x + sideLength, startPoint.y + sideLength], // bottom-right point
-                  [startPoint.x + sideLength, startPoint.y], // top-right point
-                ],
-                // width: 10,
-                // height: 10,
-                fill: color,
-              },
-              name: 'rect-shape',
-            });
-
-          }
-            
-          polyshape.animate(
-            (ratio) => {
-              // if direction is 1, set ratio to 1 - ratio, else use ratio
-              const r = direction ? 1 - ratio : ratio;
-              const tmpPoint = shape.getPoint(r);
-              let halfSideLength = sideLength / 2;
-
-              let points = [
-                  [tmpPoint.x - halfSideLength, tmpPoint.y - halfSideLength], // top-left point
-                  [tmpPoint.x - halfSideLength, tmpPoint.y + halfSideLength], // bottom-left point
-                  [tmpPoint.x + halfSideLength, tmpPoint.y + halfSideLength], // bottom-right point
-                  [tmpPoint.x + halfSideLength, tmpPoint.y - halfSideLength], // top-right point
-              ];
-              return {
-                x: tmpPoint.x,
-                y: tmpPoint.y,
-                points: points,
-              };
-            },
-            {
-              repeat: true,
-              duration: duration,
-            },
-          );
-
-          if (direction) {
-            let polyshape2
-            if (poly === "circle"){
-              polyshape2 = group.addShape(poly, {
-                attrs: {
-                  x: startPoint.x,
-                  y: startPoint.y,
-                  fill: color,
-                  r: 8,
-                },
-                name: 'circle-shape',
-              });
-            } else if (poly === "rect"){
-              polyshape2 = group.addShape('polygon', {
-                attrs: {
-                  // x: startPoint.x,
-                  // y: startPoint.y,
-                  points: [
-                    [startPoint.x, startPoint.y], // top-left point
-                    [startPoint.x, startPoint.y + sideLength], // bottom-left point
-                    [startPoint.x + sideLength, startPoint.y + sideLength], // bottom-right point
-                    [startPoint.x + sideLength, startPoint.y], // top-right point
-                  ],
-                  // width: 10,
-                  // height: 10,
-                  fill: color,
-                },
-                name: 'rect-shape',
-              });
-            }
-            polyshape2.animate(
+            // add some randomness to .25 to make it not at the exact same time.  the range is .2 to .3
+            let randomOffset = Math.random() * 0.1 + 0.2;
+            circle.animate(
               (ratio) => {
-                // if direction is 1, set ratio to 1 - ratio, else use ratio
-                const r = direction ? ratio: 1 - ratio;
-                const tmpPoint = shape.getPoint(r);
-                let halfSideLength = sideLength / 2;
-
-                let points = [
-                    [tmpPoint.x - halfSideLength, tmpPoint.y - halfSideLength], // top-left point
-                    [tmpPoint.x - halfSideLength, tmpPoint.y + halfSideLength], // bottom-left point
-                    [tmpPoint.x + halfSideLength, tmpPoint.y + halfSideLength], // bottom-right point
-                    [tmpPoint.x + halfSideLength, tmpPoint.y - halfSideLength], // top-right point
-                ];
+                // multiply the circleCountIndex by 0.25 to get the offset
+                // if permission is "read" then set ratio to 1 - ratio, else use ratio
+                // If the permission is "read" and the ratio goes above 1, then subtract 1 from the ratio
+                // If the permission is "readwrite" and the ratio goes below 1, then add 1 from the ratio
+                const tmpPoint = shape.getPoint(((ratio) => {
+                  if (permission === "read"){
+                    ratio += (circleCountIndex*randomOffset);
+                    return ratio > 1 ? ratio - 1 : ratio;
+                  } else if (permission === "readwrite"){
+                    ratio = 1 - ratio;
+                    ratio -= (circleCountIndex*randomOffset);
+                    return ratio < 0 ? ratio + 1 : ratio;
+                  }
+                })(ratio));
                 return {
                   x: tmpPoint.x,
                   y: tmpPoint.y,
-                  points: points,
                 };
               },
               {
                 repeat: true,
-                duration: duration,
-              },
+                duration: 3000,
+              }
             );
-          }
-
-        },
+          });
+        }
       },
       'quadratic',
-    );
+    ); // Extend the built-in edge quadratic
   }
-
-  registerEdge('circle-running-slow-start', 0, 3000, '#fa541cCC', "circle");
-  registerEdge('circle-running-fast-start', 0, 1000, '#fa541cCC', "circle");
-  registerEdge('circle-running-slow-end', 1, 3000, '#1890FFCC', "rect");
-  registerEdge('circle-running-fast-end', 1, 1000, '#1890FFCC', "rect");
+  registerEdge('read-low');
+  registerEdge('read-high');
+  registerEdge('readwrite-low');
+  registerEdge('readwrite-high');
 
   const handleNodeCountChange = (event) => {
     const value = parseInt(event.target.value, 10);
@@ -280,10 +249,6 @@ function App() {
               <label htmlFor="hide-detected-apps">Hide Detected Apps</label>
             </div>
             <textarea ref={textareaRef} value={textAreaValue} onChange={handleInputChange} onBlur={handleBlur}
-            // style={{
-            //     width: '100%',
-            //     minHeight: '400px'
-            //   }} 
             />
           </div>
           
@@ -336,7 +301,7 @@ function App() {
                 //   type: "quadratic"
                 // }}
                 defaultEdge={{
-                  type: 'quadratic',
+                  type: 'read-low',
                   style: {
                     lineWidth: 2,
                     stroke: '#bae7ff',

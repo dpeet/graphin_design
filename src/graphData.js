@@ -27,7 +27,7 @@ const graphData = {
                     path: "M 0,-5 \n L 10,-5 \n L 10,5 \n L 0,5 Z", }, 
                     stroke: "#434343", 
                 },
-            type:"circle-running-slow-start",
+            type:"read-high",
             target: "salesforce", 
         },
         { 
@@ -39,7 +39,7 @@ const graphData = {
                 }, 
                 stroke: "#434343", 
             },
-            type:"circle-running-fast-start",
+            type:"read-high",
             target: "salesforce", 
         },
         { 
@@ -51,7 +51,7 @@ const graphData = {
                 }, 
                 stroke: "#434343", 
             },
-            type:"circle-running-slow-end",
+            type:"readwrite-low",
             target: "salesforce", 
         },
         { 
@@ -63,7 +63,7 @@ const graphData = {
                 }, 
                 stroke: "#434343", 
             },
-            type:"circle-running-fast-end",
+            type:"readwrite-low",
             target: "salesforce", 
         },
         { 
@@ -75,6 +75,7 @@ const graphData = {
                 }, 
                 stroke: "#434343", 
             },
+            type:"readwrite-high",
             target: "salesforce", 
         },
         { 
