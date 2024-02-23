@@ -3,8 +3,11 @@ import "./App.scss";
 import React, { useEffect, useRef, useState } from "react";
 
 import G6 from '@antv/g6';
-import Graphin from "@antv/graphin";
+// import Graphin from "@antv/graphin";
+import SystemOverview from './SystemOverview'; // Import the 'SystemOverview' component
+import graphData2 from "./graphData2";
 import graphDataRaw from "./graphData";
+import salesforceLogo from "./assets/salesforce-logo.png";
 
 // TODO 30 Nodes, 6 sets of 5 combos
 // TODO update graph layout controls to use functions based on number of nodes
@@ -13,7 +16,7 @@ function App() {
   const layout = {
     collideStrength: 1,
     // comboCollideStrength: 0,
-    comboGravity: 100,
+    comboGravity: 1000,
     // comboSpacing: 2,
     depthRepulsiveForceScale: 8,
     gravity: 20,
@@ -26,19 +29,84 @@ function App() {
     // strictRadial: true,
     type: 'comboForce',
   }
+
+  const generateHighComboGraphData = (targetNodes) => {
+    const graphData = { nodes: [], combos: [], edges: [] };
+    graphData.nodes.push({
+      id: "salesforce", type: "image", img: salesforceLogo, size:[96,67.5]
+    })
+    let totalNodes = 1;
+    
+    for (let i = 0; totalNodes < targetNodes; i++) {
+      const comboId = `combo${i}`;
+      // Random number between 5 and 10, but not exceeding targetNodes
+      const nodeCount = Math.min(Math.floor(Math.random() * 3) + 5, targetNodes - totalNodes); 
+  
+      // Add combo
+      graphData.combos.push({
+        id: comboId,
+        // label: `Combo ${i}`,
+        type: "rect",
+        style: {
+          fill: "#1abc9c19",
+          stroke: "#1abc9c",
+        },
+      });
+  
+      // Add nodes
+      for (let j = 0; j < nodeCount; j++) {
+        const nodeId = `node${i}${j}`;
+        graphData.nodes.push({
+          id: nodeId,
+          label: `Node ${i}-${j}`,
+          comboId: comboId,
+          size: [140, 40],
+          type:"rect",
+          style: { 
+            endArrow: { 
+                fill: "#434343", 
+                path: "M 0,-5 \n L 10,-5 \n L 10,5 \n L 0,5 Z", 
+            }, 
+            stroke: "#434343", 
+        },
+        });
+        // Add edges
+
+        const edgeOptions = ["read-low", "read-high", "readwrite-low", "readwrite-high"];
+        graphData.edges.push({
+          source: nodeId,
+          target: "salesforce",
+          type: edgeOptions[Math.floor(Math.random() * 4)],
+          style: { 
+            endArrow: { 
+                fill: "#434343", 
+                path: "M 0,-5 \n L 10,-5 \n L 10,5 \n L 0,5 Z", }, 
+                stroke: "#434343", 
+            },
+        });
+      }
+      totalNodes += nodeCount;
+    }
+
+    if (targetNodes === 75 ){
+      console.log(graphData);
+    }
+  
+    return graphData;
+  };
+
   const graphRef = React.createRef(null);
-  const cardRef = useRef(null);
   const textareaRef = useRef();
   const graphContainerRef = useRef(null);
   const [layoutOptions, setLayoutOptions] = useState({...layout});
   const [textAreaValue, setTextAreaValue] = useState(JSON.stringify(layoutOptions, null, 2));
   const [nodeCount, setNodeCount] = useState(25);
   const [graphData, setGraphData] = useState(graphDataRaw);
-  const [lowNodeCount, setLowNodeCount] = useState(7);
-  const [highNodeCount, setHighNodeCount] = useState(101);
   const lowNodeCount = 7;
   const highNodeCount = 101;
-  let nodeCounts = [lowNodeCount, nodeCount, highNodeCount, 10, 15, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+  // let nodeCounts = [lowNodeCount, nodeCount, highNodeCount, 10, 15, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+  let nodeCounts = [lowNodeCount, nodeCount, highNodeCount]
+  let highComboNodeCounts = [3, 8, 13];
 
   const registerEdge = (edgeType) => {
     let permissions
@@ -254,62 +322,54 @@ function App() {
           
           </div>
       </div>
+
+      {highComboNodeCounts.map((combo => {
+        let graphDataFiltered = {...graphData2};
+        // filter combos to only the first x combos (using combo variable)
+        graphDataFiltered.combos = graphData2.combos.slice(0, combo);
+        // filter all nodes tha have a comboId that isn't in the graphDataFiltered.combos array or the id is "salesforce"
+        graphDataFiltered.nodes = graphData2.nodes.filter(node => {
+          return graphDataFiltered.combos.find(combo => combo.id === node.comboId) || node.id === "salesforce";
+        }, []);
+        // filter all edges that have a source or target that isn't in the graphDataFiltered.nodes array or the id is "salesforce"
+        graphDataFiltered.edges = graphData2.edges.filter(edge => {
+          return graphDataFiltered.nodes.find(node => node.id === edge.source) || graphDataFiltered.nodes.find(node => node.id === edge.target);
+        }, []);
+        let title = `App Overview with ${graphDataFiltered.nodes.length} nodes and ${combo} combos`;  
+        console.log(graphDataFiltered);
+        return (
+          <SystemOverview 
+            key={combo}
+            title={title} 
+            graphContainerRef={graphContainerRef} 
+            graphDataFiltered={graphDataFiltered} 
+            graphRef={graphRef} 
+            layoutOptions={layoutOptions} 
+          />
+        );                                    
+        }))}
+      <div className="card" />
+
       {/* create 3 graphs using lowNodeCount, nodeCount, and highNodeCount to filter the graphData */}
       {nodeCounts.map((node => {
-        let graphDataFiltered = {...graphDataRaw};   
+        let graphDataFiltered = {...graphDataRaw}; 
+        let title = `App Overview with ${node} nodes`;  
         graphDataFiltered.nodes =  graphDataRaw.nodes.slice(0, node);
         graphDataFiltered.edges = graphDataRaw.edges.filter(edge => {
           return graphDataFiltered.nodes.find(node => node.id === edge.source) && graphDataFiltered.nodes.find(node => node.id === edge.target);
         }, []);
+        // if (node === 25){
+        //   console.log(graphDataFiltered);
+        // }
         return (
-          <div className="system-overview card" key={node}> 
-            <h2> System Overview - {node}</h2>
-            <div className="graph-container" ref={graphContainerRef}>
-              <Graphin
-                animate
-                animateCfg={ {
-                  easing: 'easePolyInOut', // String, the easing function
-                }}
-                containerId="app-graph"
-                // containerStyle={{margin: "24px"}}
-                data={graphDataFiltered}
-                // fitCenter
-                fitView
-                fitViewPadding={24}
-                ref={graphRef}
-                modes={ {
-                  default: [ 'drag-canvas', {
-                    sensitivity: 1.5,
-                    type: 'zoom-canvas'
-                  }, {
-                    onlyChangeComboSize: true,
-                    type: 'drag-node'
-                  }, 'drag-combo' ]
-                } }
-                layout={ {
-                  // linkDistance: Math.min((graphData.nodes.length - 1) * 25, 500),
-                  ...layoutOptions,
-                } }
-                defaultNode={{
-                  type: "rect",
-                  style: {
-                    fill: "#DEE9FF",
-                    stroke: "#5B8FF9",
-                  }
-                }}
-                // defaultEdge={{
-                //   type: "quadratic"
-                // }}
-                defaultEdge={{
-                  type: 'read-low',
-                  style: {
-                    lineWidth: 2,
-                    stroke: '#bae7ff',
-                  },
-                  }}
-              ></Graphin>
-            </div>
-          </div>
+          <SystemOverview 
+            key={node}
+            title={title} 
+            graphContainerRef={graphContainerRef} 
+            graphDataFiltered={graphDataFiltered} 
+            graphRef={graphRef} 
+            layoutOptions={layoutOptions} 
+          />
         );                                    
         }))}
     </div>
