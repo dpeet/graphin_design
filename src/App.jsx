@@ -7,93 +7,31 @@ import G6 from '@antv/g6';
 import SystemOverview from './SystemOverview'; // Import the 'SystemOverview' component
 import graphData2 from "./graphData2";
 import graphDataRaw from "./graphData";
-import salesforceLogo from "./assets/salesforce-logo.png";
 
-// TODO 30 Nodes, 6 sets of 5 combos
 // TODO update graph layout controls to use functions based on number of nodes
 
 function App() {
-  const layout = {
-    collideStrength: 1,
-    // comboCollideStrength: 0,
-    comboGravity: 1000,
-    // comboSpacing: 2,
-    depthRepulsiveForceScale: 8,
-    gravity: 20,
-    // maxPreventOverlapIteration: 100,
-    // nodeSize: 100,
-    nodeSpacing: 10,
-    // nodeStrength: 100,
-    linkDistance: 150,
+  let layout = {
+    // collideStrength: .7,
+    // comboGravity: 1000,
+    // depthRepulsiveForceScale: 5,
+    // depthAttractiveForceScale: 1,
+    // comboSpacing: 50,
+    // gravity: 100,
+    // nodeSpacing: 40,
+    // linkDistance: 200,
+    // nodeStrength: 50,
+    // comboPadding: 1,
+    // comboCollideStrength: .55,
+    nodeStrength: 1000,
+    edgeStrength: .75,
+    nodeCollideStrength: 1,
+    // comboSpacing: 50,
+    // maxIterations: 1000,
+    
     preventOverlap: true,
-    // strictRadial: true,
     type: 'comboForce',
   }
-
-  const generateHighComboGraphData = (targetNodes) => {
-    const graphData = { nodes: [], combos: [], edges: [] };
-    graphData.nodes.push({
-      id: "salesforce", type: "image", img: salesforceLogo, size:[96,67.5]
-    })
-    let totalNodes = 1;
-    
-    for (let i = 0; totalNodes < targetNodes; i++) {
-      const comboId = `combo${i}`;
-      // Random number between 5 and 10, but not exceeding targetNodes
-      const nodeCount = Math.min(Math.floor(Math.random() * 3) + 5, targetNodes - totalNodes); 
-  
-      // Add combo
-      graphData.combos.push({
-        id: comboId,
-        // label: `Combo ${i}`,
-        type: "rect",
-        style: {
-          fill: "#1abc9c19",
-          stroke: "#1abc9c",
-        },
-      });
-  
-      // Add nodes
-      for (let j = 0; j < nodeCount; j++) {
-        const nodeId = `node${i}${j}`;
-        graphData.nodes.push({
-          id: nodeId,
-          label: `Node ${i}-${j}`,
-          comboId: comboId,
-          size: [140, 40],
-          type:"rect",
-          style: { 
-            endArrow: { 
-                fill: "#434343", 
-                path: "M 0,-5 \n L 10,-5 \n L 10,5 \n L 0,5 Z", 
-            }, 
-            stroke: "#434343", 
-        },
-        });
-        // Add edges
-
-        const edgeOptions = ["read-low", "read-high", "readwrite-low", "readwrite-high"];
-        graphData.edges.push({
-          source: nodeId,
-          target: "salesforce",
-          type: edgeOptions[Math.floor(Math.random() * 4)],
-          style: { 
-            endArrow: { 
-                fill: "#434343", 
-                path: "M 0,-5 \n L 10,-5 \n L 10,5 \n L 0,5 Z", }, 
-                stroke: "#434343", 
-            },
-        });
-      }
-      totalNodes += nodeCount;
-    }
-
-    if (targetNodes === 75 ){
-      console.log(graphData);
-    }
-  
-    return graphData;
-  };
 
   const graphRef = React.createRef(null);
   const textareaRef = useRef();
@@ -303,7 +241,7 @@ function App() {
 
   return (
     <div className="app">
-      <div className="graph-controls card">
+      <div className="graph-controls card" style={{width:"320px"}}>
         <h2>Graph Controls</h2>
         <div className="controls">
           <div className="controls-header">Controls</div>
@@ -348,7 +286,7 @@ function App() {
           />
         );                                    
         }))}
-      <div className="card" />
+      <div className="card" style={{width:"320px"}}/>
 
       {/* create 3 graphs using lowNodeCount, nodeCount, and highNodeCount to filter the graphData */}
       {nodeCounts.map((node => {
