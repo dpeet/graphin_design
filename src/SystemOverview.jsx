@@ -4,8 +4,20 @@ const SystemOverview = ({ title, graphContainerRef, graphDataFiltered, graphRef,
   const numNode = graphDataFiltered.nodes.length;
 
   let layoutOpts = {...layoutOptions}
-  // vary layoutOpts.linkDistance based on numNode.  ie 150 for 10 nodes, 100 for 50 nodes, 50 for 100+ nodes
-  // layoutOpts.linkDistance = Math.max(50, Math.min(150, 2000 / numNode)); 
+  // vary layoutOpts.linkDistance based on numNode.  
+  // ie 10 for 10 nodes, 100 for 50 nodes, 200 for 100+ nodes
+
+  //check if layoutOpts.linkDistance exists
+  if (!layoutOpts.linkDistance) {
+    if (numNode > 10 && numNode <= 50) {
+      layoutOpts.linkDistance = 100;
+    } else if (numNode > 50 && numNode <= 100) {
+      layoutOpts.linkDistance = 100;
+    } else {
+      layoutOpts.linkDistance = 200;
+    }
+  }
+  
   // layoutOpts.nodeSpacing = (d) => {
   //   // d is a node
   //   if (d.id === 'salesforce') {
