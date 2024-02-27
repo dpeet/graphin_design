@@ -7,7 +7,7 @@ const SystemOverview = ({ title, graphDataFiltered, graphRef, layoutOptions }) =
 
   if (layoutOpts.linkDistance) {
     // Math.max(min, Math.min(max, result));
-    layoutOpts.linkDistance = Math.max(200, Math.min(250, 200+numNode/2));
+    layoutOpts.linkDistance = Math.max(200, Math.min(300, 225+numNode/2));
   }
   let printLinkDistance = null
   if (layoutOpts.linkDistance) {
@@ -20,7 +20,7 @@ const SystemOverview = ({ title, graphDataFiltered, graphRef, layoutOptions }) =
     // console.log(d)
     if(d.comboId){
       // console.log(d)
-      return 1
+      return 10;
     }
     return 40;
   };

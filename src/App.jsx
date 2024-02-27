@@ -15,7 +15,7 @@ function App() {
     // comboGravity: 1000,
     depthRepulsiveForceScale: 5,
     // depthAttractiveForceScale: 1,
-    // comboSpacing: 50,
+    comboSpacing: 75,
     // gravity: 100,
     // nodeSpacing: 40,
     linkDistance: 200,
@@ -39,8 +39,8 @@ function App() {
   const [nodeCount, setNodeCount] = useState(25);
   const lowNodeCount = 7;
   const highNodeCount = 101;
-  // let nodeCounts = [lowNodeCount, nodeCount, highNodeCount, 10, 15, 20, 30, 40, 50, 60, 70, 80, 90, 100]
-  let nodeCounts = [lowNodeCount, nodeCount, highNodeCount]
+  let nodeCounts = [lowNodeCount, nodeCount, highNodeCount, 10, 15, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+  // let nodeCounts = [lowNodeCount, nodeCount, highNodeCount]
   let highComboNodeCounts = [3, 8, 13];
 
   const registerEdge = (edgeType) => {
