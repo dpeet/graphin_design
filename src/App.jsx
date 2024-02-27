@@ -111,10 +111,10 @@ function App() {
                 // If the permission is "read" and the ratio goes above 1, then subtract 1 from the ratio
                 // If the permission is "readwrite" and the ratio goes below 1, then add 1 from the ratio
                 const tmpPoint = shape.getPoint(((ratio) => {
-                  if (permission === "read"){
+                  if (permission === "readwrite"){
                     ratio += (circleCountIndex*randomOffset);
                     return ratio > 1 ? ratio - 1 : ratio;
-                  } else if (permission === "readwrite"){
+                  } else if (permission === "read"){
                     ratio = 1 - ratio;
                     ratio -= (circleCountIndex*randomOffset);
                     return ratio < 0 ? ratio + 1 : ratio;
