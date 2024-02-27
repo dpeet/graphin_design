@@ -1,36 +1,35 @@
 import Graphin from '@antv/graphin';
 
-const SystemOverview = ({ title, graphContainerRef, graphDataFiltered, graphRef, layoutOptions }) => {
+const SystemOverview = ({ title, graphDataFiltered, graphRef, layoutOptions }) => {
   const numNode = graphDataFiltered.nodes.length;
 
   let layoutOpts = {...layoutOptions}
-  // vary layoutOpts.linkDistance based on numNode.  
-  // ie 10 for 10 nodes, 100 for 50 nodes, 200 for 100+ nodes
 
-  //check if layoutOpts.linkDistance exists
-  if (!layoutOpts.linkDistance) {
-    if (numNode > 10 && numNode <= 50) {
-      layoutOpts.linkDistance = 100;
-    } else if (numNode > 50 && numNode <= 100) {
-      layoutOpts.linkDistance = 100;
-    } else {
-      layoutOpts.linkDistance = 200;
-    }
+  if (layoutOpts.linkDistance) {
+    // Math.max(min, Math.min(max, result));
+    layoutOpts.linkDistance = Math.max(200, Math.min(250, 200+numNode/2));
   }
-  
-  // layoutOpts.nodeSpacing = (d) => {
-  //   // d is a node
-  //   if (d.id === 'salesforce') {
-  //     return 100;
-  //   }
-  //   return 10;
-  // };
+  let printLinkDistance = null
+  if (layoutOpts.linkDistance) {
+    printLinkDistance = layoutOpts.linkDistance.toFixed(1);
+  }
+  // console.log(layoutOpts.linkDistance);
+
+  layoutOpts.nodeSpacing = (d) => {
+    // d is a node
+    // console.log(d)
+    if(d.comboId){
+      // console.log(d)
+      return 1
+    }
+    return 40;
+  };
 
   return (
     <div className="system-overview card" key={title}> 
         <h2>{title}</h2>
-        {/* <p> {layoutOpts.linkDistance.toFixed(1)} - layoutOpts.linkDistance = Math.max(50, Math.min(150, 2000 / numNode)); </p> */}
-        <div className="graph-container" ref={graphContainerRef}>
+        <p> {printLinkDistance} </p>
+        <div className="graph-container">
           <Graphin
             animate
             animateCfg={{ easing: 'easePolyInOut' }}
@@ -48,7 +47,7 @@ const SystemOverview = ({ title, graphContainerRef, graphDataFiltered, graphRef,
                 'drag-combo'
               ]
             }}
-            layout={{ ...layoutOpts }}
+            layout={{...layoutOpts,}}
             defaultCombo={{
               type:"rect",
             }}

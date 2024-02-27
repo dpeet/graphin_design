@@ -8,26 +8,25 @@ import SystemOverview from './SystemOverview'; // Import the 'SystemOverview' co
 import graphData2 from "./graphData2";
 import graphDataRaw from "./graphData";
 
-// TODO update graph layout controls to use functions based on number of nodes
-
 function App() {
+
   let layout = {
-    // collideStrength: .7,
+    // collideStrength: .6,
     // comboGravity: 1000,
-    // depthRepulsiveForceScale: 5,
+    depthRepulsiveForceScale: 5,
     // depthAttractiveForceScale: 1,
     // comboSpacing: 50,
     // gravity: 100,
     // nodeSpacing: 40,
-    // linkDistance: 200,
+    linkDistance: 200,
     // nodeStrength: 50,
     // comboPadding: 1,
-    // comboCollideStrength: .55,
-    nodeStrength: 1000,
-    edgeStrength: .75,
-    nodeCollideStrength: 1,
+    // comboCollideStrength: .75,
+    // nodeStrength: 1000,
+    // edgeStrength: .75,
+    // nodeCollideStrength: 1,
     // comboSpacing: 50,
-    // maxIterations: 1000,
+    // maxIterations: 10000,
     
     preventOverlap: true,
     type: 'comboForce',
@@ -35,11 +34,9 @@ function App() {
 
   const graphRef = React.createRef(null);
   const textareaRef = useRef();
-  const graphContainerRef = useRef(null);
   const [layoutOptions, setLayoutOptions] = useState({...layout});
   const [textAreaValue, setTextAreaValue] = useState(JSON.stringify(layoutOptions, null, 2));
   const [nodeCount, setNodeCount] = useState(25);
-  const [graphData, setGraphData] = useState(graphDataRaw);
   const lowNodeCount = 7;
   const highNodeCount = 101;
   // let nodeCounts = [lowNodeCount, nodeCount, highNodeCount, 10, 15, 20, 30, 40, 50, 60, 70, 80, 90, 100]
@@ -147,14 +144,6 @@ function App() {
   const handleNodeCountChange = (event) => {
     const value = parseInt(event.target.value, 10);
     if (value >= 0) {
-      let graphDataFiltered = {...graphDataRaw}; 
-      console.log(graphDataRaw.nodes)
-      graphDataFiltered.nodes =  graphDataRaw.nodes.slice(0, value);
-      graphDataFiltered.edges = graphDataRaw.edges.filter(edge => {
-        return graphDataFiltered.nodes.find(node => node.id === edge.source) && graphDataFiltered.nodes.find(node => node.id === edge.target);
-      }, []);
-      console.log('graphDataFiltered', graphDataFiltered);
-      setGraphData({...graphDataFiltered});
       setNodeCount(value);
       // get graph instance and render it
       const { graph } = graphRef.current;
@@ -180,22 +169,6 @@ function App() {
       textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
     }
   }, []);
-
-  useEffect(() => {
-    if (graphContainerRef.current) {
-      // const rect = graphContainerRef.current.getBoundingClientRect();
-      // const centerX = (rect.left + rect.right) / 2;
-      // const centerY = (rect.top + rect.bottom) / 2;
-
-      // Update the layout of the graph using centerX and centerY
-      setLayoutOptions({
-        // center: [ centerX, centerY],
-        ...layoutOptions
-      });
-      const { graph } = graphRef.current;
-      graph.render();
-    }
-    }, []);
 
   useEffect(() => {
     const { graph } = graphRef.current;
@@ -274,12 +247,10 @@ function App() {
           return graphDataFiltered.nodes.find(node => node.id === edge.source) || graphDataFiltered.nodes.find(node => node.id === edge.target);
         }, []);
         let title = `App Overview with ${graphDataFiltered.nodes.length} nodes and ${combo} combos`;  
-        console.log(graphDataFiltered);
         return (
           <SystemOverview 
             key={combo}
             title={title} 
-            graphContainerRef={graphContainerRef} 
             graphDataFiltered={graphDataFiltered} 
             graphRef={graphRef} 
             layoutOptions={layoutOptions} 
@@ -296,14 +267,10 @@ function App() {
         graphDataFiltered.edges = graphDataRaw.edges.filter(edge => {
           return graphDataFiltered.nodes.find(node => node.id === edge.source) && graphDataFiltered.nodes.find(node => node.id === edge.target);
         }, []);
-        // if (node === 25){
-        //   console.log(graphDataFiltered);
-        // }
         return (
           <SystemOverview 
             key={node}
             title={title} 
-            graphContainerRef={graphContainerRef} 
             graphDataFiltered={graphDataFiltered} 
             graphRef={graphRef} 
             layoutOptions={layoutOptions} 
