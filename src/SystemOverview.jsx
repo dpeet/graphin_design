@@ -28,7 +28,7 @@ const SystemOverview = ({ title, graphDataFiltered, graphRef, layoutOptions }) =
   return (
     <div className="system-overview card" key={title}> 
         <h2>{title}</h2>
-        <p> {printLinkDistance} </p>
+        {/* <p> {printLinkDistance} </p> */}
         <div className="graph-container">
           <Graphin
             animate

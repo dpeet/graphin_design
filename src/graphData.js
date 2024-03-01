@@ -192,9 +192,9 @@ const graphData = {
         { id: "1", label: "Sonar", type: "rect", size: [102,32] },
         { id: "2", type: "rect", label: "Marketo", size: [104, 33], comboId: "marketing", },
         { comboId: "sales", id: "3", type: "rect", label: "Salesloft", size: [104, 33] },
-        { id:"4", type: "rect", label: "6sense", size: [110, 33] },
+        { id:"4", type: "rect", label: "Pendo", size: [110, 33] },
         { comboId: "sales", id: "5", type: "rect", label: "Custom", size: [104, 33] },
-        { comboId: "marketing", id: "6", type: "rect", label: "6 Sense", size: [110, 33] },
+        { comboId: "marketing", id: "6", type: "rect", label: "6Sense", size: [110, 33] },
         // Additional companies
         { id: "7", type: "rect", label: "Company 7", size: [110, 33] },
         { id: "8", type: "rect", label: "Company 8", size: [110, 33] },
