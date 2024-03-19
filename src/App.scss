@@ -40,9 +40,15 @@ h2{
 
 .graph-container{
   padding: 24px;
+  width: 100%;
 }
 
-
+.padding-card{
+  padding-right: calc(100vw - 640px);
+  padding-bottom: calc(100vh - 640px);
+  padding-left:16px
+  
+}
 
 .system-overview{
 }
@@ -64,4 +70,1477 @@ h2{
       }
     }
   }
+}
+
+.application-overview {
+  align-items: center;
+  background-color: var(--graygray-1-white);
+  border: 1px solid;
+  border-color: var(--graygray-5-border);
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 16px 24px;
+  position: relative;
+  min-width: 900px
+}
+
+.application-overview .graph-container{
+  padding: 0;
+}
+
+.application-overview .div-2 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  width: 100%;
+}
+
+.application-overview .header {
+  align-items: flex-start;
+  align-self: stretch;
+  background-color: transparent;
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: space-between;
+  position: relative;
+  width: 100%;
+}
+
+.application-overview .div-3 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 8px;
+  position: relative;
+}
+
+.application-overview .frame-2 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
+  position: relative;
+}
+
+.application-overview .text-wrapper-3 {
+  color: #000000;
+  font-family: var(--sonar-h2-20px-28px-font-family);
+  font-size: var(--sonar-h2-20px-28px-font-size);
+  font-style: var(--sonar-h2-20px-28px-font-style);
+  font-weight: var(--sonar-h2-20px-28px-font-weight);
+  letter-spacing: var(--sonar-h2-20px-28px-letter-spacing);
+  line-height: var(--sonar-h2-20px-28px-line-height);
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.application-overview .button {
+  all: unset;
+  align-items: center;
+  border-radius: 2px;
+  box-sizing: border-box;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+}
+
+.application-overview .salesforce-cloud {
+  height: 16px !important;
+  position: relative !important;
+  width: 16px !important;
+}
+
+.application-overview .button-2 {
+  all: unset;
+  box-sizing: border-box;
+  color: var(--daybreak-blueblue-6-normal);
+  font-family: var(--sonar-body-14px-22px-font-family);
+  font-size: var(--sonar-body-14px-22px-font-size);
+  font-style: var(--sonar-body-14px-22px-font-style);
+  font-weight: var(--sonar-body-14px-22px-font-weight);
+  letter-spacing: var(--sonar-body-14px-22px-letter-spacing);
+  line-height: var(--sonar-body-14px-22px-line-height);
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.application-overview .API-requests {
+  align-items: flex-end;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.application-overview .header-row {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 8px;
+  justify-content: flex-end;
+  padding: 3px 0px;
+  position: relative;
+  width: 100%;
+}
+
+.application-overview .p {
+  color: var(--default-gray-7-tertiary-text);
+  font-family: var(--sonar-body-bold-14px-22px-font-family);
+  font-size: var(--sonar-body-bold-14px-22px-font-size);
+  font-style: var(--sonar-body-bold-14px-22px-font-style);
+  font-weight: var(--sonar-body-bold-14px-22px-font-weight);
+  letter-spacing: var(--sonar-body-bold-14px-22px-letter-spacing);
+  line-height: var(--sonar-body-bold-14px-22px-line-height);
+  margin-top: -1px;
+  position: relative;
+  text-align: right;
+  white-space: nowrap;
+  width: fit-content;
+  margin-block-end: 0;
+}
+
+.application-overview .icon {
+  height: 14px;
+  position: relative;
+  width: 14px;
+}
+
+.application-overview .icon-2 {
+  height: 16px;
+  position: relative;
+  width: 16px;
+}
+
+.application-overview .calls-row {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 4px;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.application-overview .used-calls {
+  color: var(--default-gray-10-primary-text);
+  font-family: var(--sonar-h2-20px-28px-font-family);
+  font-size: var(--sonar-h2-20px-28px-font-size);
+  font-style: var(--sonar-h2-20px-28px-font-style);
+  font-weight: var(--sonar-h2-20px-28px-font-weight);
+  letter-spacing: var(--sonar-h2-20px-28px-letter-spacing);
+  line-height: var(--sonar-h2-20px-28px-line-height);
+  margin-top: -1px;
+  position: relative;
+  text-align: right;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.application-overview .max-calls {
+  color: var(--default-gray-8-secondary-text);
+  font-family: var(--sonar-body-14px-22px-font-family);
+  font-size: var(--sonar-body-14px-22px-font-size);
+  font-style: var(--sonar-body-14px-22px-font-style);
+  font-weight: var(--sonar-body-14px-22px-font-weight);
+  letter-spacing: var(--sonar-body-14px-22px-letter-spacing);
+  line-height: var(--sonar-body-14px-22px-line-height);
+  position: relative;
+  text-align: right;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.application-overview .progress-standard {
+  align-items: center;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 8px;
+  justify-content: flex-end;
+  padding: 4px 0px;
+  position: relative;
+  width: 192px;
+}
+
+.application-overview .progress-bar {
+  background-color: var(--graygray-5-border);
+  border-radius: 8px;
+  flex: 1;
+  flex-grow: 1;
+  height: 6px;
+  overflow: hidden;
+  position: relative;
+}
+
+.application-overview .progress {
+  height: 6px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 63px;
+}
+
+.application-overview .text-wrapper-4 {
+  color: var(--graygray-7-tertiary-text);
+  font-family: var(--sonar-label-12px-20px-font-family);
+  font-size: var(--sonar-label-12px-20px-font-size);
+  font-style: var(--sonar-label-12px-20px-font-style);
+  font-weight: var(--sonar-label-12px-20px-font-weight);
+  letter-spacing: var(--sonar-label-12px-20px-letter-spacing);
+  line-height: var(--sonar-label-12px-20px-line-height);
+  margin-top: -1px;
+  position: relative;
+  text-align: right;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.application-overview .application-graph {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+
+.application-overview .graph {
+  height: 368px;
+  position: relative;
+  width: 765px;
+}
+
+.application-overview .overlap {
+  height: 368px;
+  position: relative;
+}
+
+.application-overview .overlap-2 {
+  height: 352px;
+  left: 0;
+  position: absolute;
+  top: 16px;
+  width: 621px;
+}
+
+.application-overview .frame-3 {
+  background-color: var(--daybreak-blueblue-1-selected-background-color);
+  border: 1px solid;
+  border-color: var(--daybreak-blueblue-3-border);
+  border-radius: 2px;
+  height: 110px;
+  left: 431px;
+  position: absolute;
+  top: 227px;
+  width: 189px;
+}
+
+.application-overview .graph-elements {
+  left: 431px !important;
+  position: absolute !important;
+  top: 227px !important;
+}
+
+.application-overview .img-wrapper {
+  align-items: flex-start;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 8px;
+  left: 257px;
+  padding: 16px;
+  position: absolute;
+  top: 67px;
+}
+
+.application-overview .image-3 {
+  height: 121px;
+  object-fit: cover;
+  position: relative;
+  width: 173px;
+}
+
+.application-overview .overlap-wrapper {
+  height: 43px;
+  left: 149px;
+  position: absolute;
+  top: 98px;
+  transform: rotate(180deg);
+  width: 124px;
+}
+
+.application-overview .overlap-group-2 {
+  height: 40px;
+  position: relative;
+  top: 2px;
+  width: 117px;
+}
+
+.application-overview .line-2 {
+  height: 21px;
+  left: 54px;
+  position: absolute;
+  top: 20px;
+  width: 63px;
+}
+
+.application-overview .element-2 {
+  height: 18px;
+  left: 0;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  transform: rotate(-180deg);
+  width: 54px;
+}
+
+.application-overview .endpoint-2-instance {
+  height: 8px !important;
+  left: 55px !important;
+  position: absolute !important;
+  top: 13px !important;
+  transform: rotate(-180deg) !important;
+  width: 8px !important;
+}
+
+.application-overview .line-3 {
+  height: 26px;
+  left: 0;
+  position: absolute;
+  top: 2px;
+  transform: rotate(-180deg);
+  width: 59px;
+}
+
+.application-overview .element-3 {
+  height: 18px;
+  left: 4px;
+  object-fit: cover;
+  position: absolute;
+  top: 8px;
+  width: 48px;
+}
+
+.application-overview .icon-instance-node {
+  height: 8px !important;
+  left: 51px !important;
+  position: absolute !important;
+  top: 22px !important;
+  width: 8px !important;
+}
+
+.application-overview .union {
+  height: 38px;
+  left: 7px;
+  position: absolute;
+  top: 0;
+  transform: rotate(-180deg);
+  width: 103px;
+}
+
+.application-overview .overlap-group-wrapper {
+  height: 43px;
+  left: 175px;
+  position: absolute;
+  top: 43px;
+  transform: rotate(180deg);
+  width: 124px;
+}
+
+.application-overview .overlap-3 {
+  height: 39px;
+  position: relative;
+  top: 4px;
+  width: 117px;
+}
+
+.application-overview .line-4 {
+  height: 35px;
+  left: 3px;
+  position: absolute;
+  top: 4px;
+  width: 114px;
+}
+
+.application-overview .element-4 {
+  height: 32px;
+  left: 0;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  transform: rotate(-180deg);
+  width: 106px;
+}
+
+.application-overview .endpoint-3 {
+  height: 8px !important;
+  left: 106px !important;
+  position: absolute !important;
+  top: 27px !important;
+  transform: rotate(-180deg) !important;
+  width: 8px !important;
+}
+
+.application-overview .line-5 {
+  height: 26px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transform: rotate(-180deg);
+  width: 59px;
+}
+
+.application-overview .design-component-instance-node {
+  left: 51px !important;
+  position: relative !important;
+  top: -4px !important;
+}
+
+.application-overview .union-2 {
+  height: 32px;
+  left: 2px;
+  position: absolute;
+  top: 4px;
+  transform: rotate(-180deg);
+  width: 108px;
+}
+
+.application-overview .line-instance {
+  height: 63px !important;
+  left: 364px !important;
+  position: absolute !important;
+  top: 6px !important;
+  transform: rotate(-90deg) !important;
+}
+
+.application-overview .line-6 {
+  height: 60px !important;
+  left: 12px !important;
+  top: -1px !important;
+  transform: rotate(90deg) !important;
+  width: 52px !important;
+}
+
+.application-overview .endpoint-1 {
+  height: 8px !important;
+  left: 64px !important;
+  position: absolute !important;
+  top: 55px !important;
+  transform: rotate(90deg) !important;
+  width: 8px !important;
+}
+
+.application-overview .element-5 {
+  height: 64px;
+  left: 367px;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  width: 55px;
+}
+
+.application-overview .line-7 {
+  height: 109px;
+  left: 362px;
+  position: absolute;
+  top: 205px;
+  transform: rotate(180deg);
+  width: 100px;
+}
+
+.application-overview .overlap-4 {
+  height: 101px;
+  left: 8px;
+  position: absolute;
+  top: 0;
+  width: 96px;
+}
+
+.application-overview .element-6 {
+  height: 98px;
+  left: 0;
+  object-fit: cover;
+  position: absolute;
+  top: 4px;
+  transform: rotate(-180deg);
+  width: 92px;
+}
+
+.application-overview .element-7 {
+  height: 99px;
+  left: 0;
+  object-fit: cover;
+  position: absolute;
+  top: 2px;
+  transform: rotate(-180deg);
+  width: 94px;
+}
+
+.application-overview .endpoint-4 {
+  left: 88px !important;
+  position: absolute !important;
+  top: 0 !important;
+  transform: rotate(90deg) !important;
+}
+
+.application-overview .endpoint-1-instance {
+  height: 8px !important;
+  left: 0 !important;
+  position: absolute !important;
+  top: 0 !important;
+  transform: rotate(-180deg) !important;
+  width: 8px !important;
+}
+
+.application-overview .line-8 {
+  height: 111px;
+  left: 273px;
+  position: absolute;
+  top: 205px;
+  width: 65px;
+}
+
+.application-overview .overlap-5 {
+  height: 103px;
+  left: 8px;
+  position: absolute;
+  top: 8px;
+  width: 61px;
+}
+
+.application-overview .element-8 {
+  height: 100px;
+  left: 0;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  width: 58px;
+}
+
+.application-overview .element-9 {
+  height: 101px;
+  left: 0;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  width: 59px;
+}
+
+.application-overview .endpoint-5 {
+  left: 53px !important;
+  position: absolute !important;
+  top: 95px !important;
+  transform: rotate(90deg) !important;
+}
+
+.application-overview .endpoint-6 {
+  height: 8px !important;
+  left: 0 !important;
+  position: absolute !important;
+  top: 103px !important;
+  width: 8px !important;
+}
+
+.application-overview .line-9 {
+  height: 63px;
+  left: 388px;
+  position: absolute;
+  top: 206px;
+  transform: rotate(180deg);
+  width: 105px;
+}
+
+.application-overview .overlap-6 {
+  height: 64px;
+  left: 6px;
+  position: relative;
+  width: 109px;
+}
+
+.application-overview .element-10 {
+  height: 48px;
+  left: 6px;
+  object-fit: cover;
+  position: absolute;
+  top: 10px;
+  transform: rotate(-180deg);
+  width: 94px;
+}
+
+.application-overview .element-11 {
+  height: 56px;
+  left: 8px;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  transform: rotate(-180deg);
+  width: 101px;
+}
+
+.application-overview .endpoint-7 {
+  height: 8px !important;
+  left: 95px !important;
+  position: absolute !important;
+  top: 56px !important;
+  transform: rotate(-180deg) !important;
+  width: 8px !important;
+}
+
+.application-overview .endpoint-8 {
+  height: 8px !important;
+  left: 0 !important;
+  position: absolute !important;
+  top: 6px !important;
+  transform: rotate(-180deg) !important;
+  width: 8px !important;
+}
+
+.application-overview .company-tag-2 {
+  align-items: flex-start;
+  border-radius: 2px;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  top: 83px;
+}
+
+.application-overview .company-tag-main-2 {
+  align-items: center;
+  background-color: var(--graygray-2-table-header);
+  border: 1px solid;
+  border-color: var(--graygray-5-border);
+  border-radius: 2px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 8px;
+  padding: 6px 8px;
+  position: relative;
+}
+
+.application-overview .frame-wrapper {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 8px;
+  height: 28px;
+  justify-content: center;
+  position: relative;
+}
+
+.application-overview .vrlogotag-wrapper {
+  align-items: flex-start;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: -3px;
+  margin-top: -3px;
+  padding: 6px 0px 0px;
+  position: relative;
+  width: 134px;
+}
+
+.application-overview .vrlogotag {
+  height: 28px;
+  object-fit: cover;
+  position: relative;
+  width: 133.71px;
+}
+
+.application-overview .group {
+  height: 150px;
+  left: 6px;
+  opacity: 0.75;
+  position: absolute;
+  top: 136px;
+  width: 315px;
+}
+
+.application-overview .overlap-7 {
+  height: 150px;
+  position: relative;
+}
+
+.application-overview .rectangle-2 {
+  background-color: var(--graygray-2-table-header);
+  border: 1px solid;
+  border-color: var(--default-gray-5-border);
+  border-radius: 2px;
+  height: 143px;
+  left: 14px;
+  position: absolute;
+  top: 6px;
+  width: 213px;
+}
+
+.application-overview .frame-4 {
+  height: 62px;
+  left: 98px;
+  position: absolute;
+  top: 81px;
+  width: 199px;
+}
+
+.application-overview .line-10 {
+  height: 46px;
+  left: 110px;
+  position: absolute;
+  top: 0;
+  width: 89px;
+}
+
+.application-overview .overlap-group-3 {
+  height: 42px;
+  left: 8px;
+  position: absolute;
+  top: 8px;
+  width: 89px;
+}
+
+.application-overview .element-12 {
+  height: 34px;
+  left: 0;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  width: 82px;
+}
+
+.application-overview .element-13 {
+  height: 42px;
+  left: 0;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  width: 89px;
+}
+
+.application-overview .endpoint-9 {
+  left: 77px !important;
+  position: absolute !important;
+  top: 30px !important;
+  transform: rotate(90deg) !important;
+}
+
+.application-overview .endpoint-10 {
+  height: 8px !important;
+  left: 0 !important;
+  position: absolute !important;
+  top: 38px !important;
+  width: 8px !important;
+}
+
+.application-overview .company-tag-3 {
+  align-items: flex-start;
+  border-radius: 2px;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  left: -8px;
+  position: absolute;
+  top: 22px;
+}
+
+.application-overview .company-tag-main-3 {
+  align-items: center;
+  background-color: var(--graygray-2-table-header);
+  border: 1px solid;
+  border-color: var(--graygray-5-border);
+  border-radius: 2px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 8px;
+  padding: 8px;
+  position: relative;
+}
+
+.application-overview .nicepng-hitachi-logo-wrapper {
+  height: 24px;
+  position: relative;
+  width: 102px;
+}
+
+.application-overview .nicepng-hitachi-logo {
+  height: 24px;
+  left: -1px;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  width: 103px;
+}
+
+.application-overview .group-2 {
+  height: 56px;
+  left: 32px;
+  position: absolute;
+  top: 42px;
+  width: 238px;
+}
+
+.application-overview .overlap-8 {
+  height: 56px;
+  position: relative;
+}
+
+.application-overview .frame-5 {
+  height: 43px;
+  left: 114px;
+  position: absolute;
+  top: 0;
+  transform: rotate(180deg);
+  width: 124px;
+}
+
+.application-overview .element-14 {
+  height: 18px;
+  left: 0;
+  object-fit: cover;
+  position: absolute;
+  top: 4px;
+  transform: rotate(-180deg);
+  width: 54px;
+}
+
+.application-overview .endpoint-11 {
+  height: 8px !important;
+  left: 55px !important;
+  position: absolute !important;
+  top: 0 !important;
+  transform: rotate(-180deg) !important;
+  width: 8px !important;
+}
+
+.application-overview .element-15 {
+  height: 18px;
+  left: 4px;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  width: 48px;
+}
+
+.application-overview .endpoint-12 {
+  height: 8px !important;
+  left: 51px !important;
+  position: absolute !important;
+  top: -4px !important;
+  width: 8px !important;
+}
+
+.application-overview .company-tag-4 {
+  align-items: flex-start;
+  border-radius: 2px;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  top: 16px;
+}
+
+.application-overview .logo-frame-3 {
+  height: 24px;
+  position: relative;
+  width: 100px;
+}
+
+.application-overview .image-4 {
+  height: 28px;
+  left: 2px;
+  object-fit: cover;
+  position: absolute;
+  top: -3px;
+  width: 96px;
+}
+
+.application-overview .group-3 {
+  height: 40px;
+  left: 20px;
+  position: absolute;
+  top: 11px;
+  width: 245px;
+}
+
+.application-overview .line-11 {
+  height: 20px;
+  left: 119px;
+  position: absolute;
+  top: 9px;
+  width: 126px;
+}
+
+.application-overview .overlap-group-4 {
+  height: 20px;
+  position: relative;
+}
+
+.application-overview .endpoint-13 {
+  height: 8px !important;
+  left: 0 !important;
+  position: absolute !important;
+  top: 6px !important;
+  width: 8px !important;
+}
+
+.application-overview .element-16 {
+  height: 1px;
+  left: 4px;
+  object-fit: cover;
+  position: absolute;
+  top: 10px;
+  width: 119px;
+}
+
+.application-overview .element-17 {
+  height: 20px;
+  left: 8px;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  width: 110px;
+}
+
+.application-overview .endpoint-14 {
+  left: 118px !important;
+  position: absolute !important;
+  top: 6px !important;
+}
+
+.application-overview .company-tag-5 {
+  align-items: flex-start;
+  border-radius: 2px;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  top: 0;
+}
+
+.application-overview .logo-frame-instance {
+  height: 24px !important;
+  position: relative !important;
+  width: 99px !important;
+}
+
+.application-overview .vector {
+  height: 150px;
+  left: 0;
+  mix-blend-mode: saturation;
+  position: absolute;
+  top: 0;
+  width: 315px;
+}
+
+.application-overview .line-12 {
+  height: 59px;
+  left: 303px;
+  position: absolute;
+  top: 20px;
+  width: 46px;
+}
+
+.application-overview .overlap-9 {
+  height: 48px;
+  left: 8px;
+  position: absolute;
+  top: 3px;
+  width: 39px;
+}
+
+.application-overview .element-18 {
+  height: 48px;
+  left: 0;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  width: 38px;
+}
+
+.application-overview .element-19 {
+  height: 48px;
+  left: 0;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  width: 39px;
+}
+
+.application-overview .endpoint-15 {
+  height: 8px !important;
+  left: 42px !important;
+  position: absolute !important;
+  top: 51px !important;
+  width: 8px !important;
+}
+
+.application-overview .endpoint-16 {
+  height: 8px !important;
+  left: 0 !important;
+  position: absolute !important;
+  top: 0 !important;
+  width: 8px !important;
+}
+
+.application-overview .overlap-10 {
+  height: 104px;
+  left: 462px;
+  position: absolute;
+  top: 115px;
+  width: 303px;
+}
+
+.application-overview .graph-elements-instance {
+  left: 58px !important;
+  position: absolute !important;
+  top: 0 !important;
+}
+
+.application-overview .line-13 {
+  height: 20px;
+  left: 0;
+  position: absolute;
+  top: 8px;
+  transform: rotate(180deg);
+  width: 82px;
+}
+
+.application-overview .element-20 {
+  height: 1px;
+  left: 4px;
+  object-fit: cover;
+  position: absolute;
+  top: 10px;
+  transform: rotate(-180deg);
+  width: 75px;
+}
+
+.application-overview .element-21 {
+  height: 20px;
+  left: 8px;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  transform: rotate(-180deg);
+  width: 66px;
+}
+
+.application-overview .endpoint-17 {
+  left: 74px !important;
+  position: absolute !important;
+  top: 6px !important;
+}
+
+.application-overview .frame-6 {
+  height: 43px;
+  left: 0;
+  position: absolute;
+  top: 41px;
+  transform: rotate(180deg);
+  width: 86px;
+}
+
+.application-overview .overlap-11 {
+  height: 40px;
+  position: relative;
+  top: 2px;
+}
+
+.application-overview .line-14 {
+  height: 21px;
+  left: 39px;
+  position: absolute;
+  top: 20px;
+  width: 47px;
+}
+
+.application-overview .element-22 {
+  height: 18px;
+  left: 0;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  transform: rotate(-180deg);
+  width: 38px;
+}
+
+.application-overview .endpoint-18 {
+  height: 8px !important;
+  left: 39px !important;
+  position: absolute !important;
+  top: 13px !important;
+  transform: rotate(-180deg) !important;
+  width: 8px !important;
+}
+
+.application-overview .line-15 {
+  height: 26px;
+  left: 0;
+  position: absolute;
+  top: 2px;
+  transform: rotate(-180deg);
+  width: 44px;
+}
+
+.application-overview .element-23 {
+  height: 18px;
+  left: 4px;
+  object-fit: cover;
+  position: absolute;
+  top: 8px;
+  width: 32px;
+}
+
+.application-overview .endpoint-19 {
+  height: 8px !important;
+  left: 36px !important;
+  position: absolute !important;
+  top: 22px !important;
+  width: 8px !important;
+}
+
+.application-overview .union-3 {
+  height: 38px;
+  left: 7px;
+  position: absolute;
+  top: 0;
+  transform: rotate(-180deg);
+  width: 72px;
+}
+
+.application-overview .company-tag-6 {
+  align-items: flex-start;
+  border-radius: 2px;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  left: 446px;
+  position: absolute;
+  top: 0;
+}
+
+.application-overview .logo-frame-4 {
+  height: 24px !important;
+  position: relative !important;
+  width: 93.6px !important;
+}
+
+.application-overview .company-tag-7 {
+  align-items: flex-start;
+  border-radius: 2px;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  left: 173px;
+  position: absolute;
+  top: 6px;
+}
+
+.application-overview .logo-frame-5 {
+  height: 28px;
+  margin-right: -0.6px;
+  position: relative;
+  width: 110.6px;
+}
+
+.application-overview .company-tag-8 {
+  align-items: flex-start;
+  border-radius: 2px;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  left: 27px;
+  position: absolute;
+  top: 43px;
+}
+
+.application-overview .logo-frame-6 {
+  flex: 0 0 auto;
+  height: 32px;
+  margin-bottom: -2px;
+  margin-right: -0.24px;
+  margin-top: -2px;
+  position: relative;
+}
+
+.application-overview .company-tag-main-4 {
+  align-items: center;
+  background-color: var(--graygray-2-table-header);
+  border: 1px solid;
+  border-color: var(--graygray-5-border);
+  border-radius: 2px;
+  display: inline-flex;
+  gap: 8px;
+  left: 149px;
+  padding: 6px 8px;
+  position: absolute;
+  top: 306px;
+}
+
+.application-overview .logo-frame-7 {
+  flex: 0 0 auto;
+  height: 28px;
+  margin-right: -0.8px;
+  position: relative;
+}
+
+.application-overview .legend {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
+  padding: 0px 0px 16px;
+  position: relative;
+  width: 100%;
+}
+
+.application-overview .frame-7 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  position: relative;
+}
+
+.application-overview .text-wrapper-5 {
+  color: var(--graygray-7-tertiary-text);
+  font-family: var(--sonar-body-bold-14px-22px-font-family);
+  font-size: var(--sonar-body-bold-14px-22px-font-size);
+  font-style: var(--sonar-body-bold-14px-22px-font-style);
+  font-weight: var(--sonar-body-bold-14px-22px-font-weight);
+  letter-spacing: var(--sonar-body-bold-14px-22px-letter-spacing);
+  line-height: var(--sonar-body-bold-14px-22px-line-height);
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.application-overview .checkbox-inactive {
+  background-color: var(--graygray-1-white);
+  border: 1px solid;
+  border-color: var(--graygray-5-border);
+  border-radius: 2px;
+  height: 16px;
+  position: relative;
+  width: 16px;
+}
+
+.application-overview .checkbox {
+  color: var(--default-gray-8-secondary-text);
+  font-family: var(--sonar-body-14px-22px-font-family);
+  font-size: var(--sonar-body-14px-22px-font-size);
+  font-style: var(--sonar-body-14px-22px-font-style);
+  font-weight: var(--sonar-body-14px-22px-font-weight);
+  letter-spacing: var(--sonar-body-14px-22px-letter-spacing);
+  line-height: var(--sonar-body-14px-22px-line-height);
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.application-overview .frame-8 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  gap: 16px 8px;
+  position: relative;
+}
+
+.application-overview .group-legend {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 8px;
+  position: relative;
+}
+
+.application-overview .div-4 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 4px;
+  position: relative;
+}
+
+.application-overview .rectangle-3 {
+  background-color: var(--daybreak-blueblue-1-selected-background-color);
+  border: 1px solid;
+  border-color: var(--daybreak-blueblue-3-border);
+  border-radius: 6px;
+  height: 12px;
+  position: relative;
+  width: 20px;
+}
+
+.application-overview .text-wrapper-6 {
+  color: var(--graygray-8-secondary-text);
+  font-family: var(--sonar-body-14px-22px-font-family);
+  font-size: var(--sonar-body-14px-22px-font-size);
+  font-style: var(--sonar-body-14px-22px-font-style);
+  font-weight: var(--sonar-body-14px-22px-font-weight);
+  letter-spacing: var(--sonar-body-14px-22px-letter-spacing);
+  line-height: var(--sonar-body-14px-22px-line-height);
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.application-overview .rectangle {
+  border: 1px solid;
+  border-radius: 6px;
+  height: 12px;
+  position: relative;
+  width: 20px;
+}
+
+.application-overview .rectangle-10 {
+  background-color: #fa7a7019;
+  border-color: #fa7a70;
+}
+.application-overview .rectangle-11 {
+  background-color: #da90fc19;
+  border-color: #da90fc;
+}
+.application-overview .rectangle-12 {
+  background-color: #fcf09019;
+  border-color: #fcf090;
+}
+.application-overview .rectangle-13 {
+  background-color: #65b87819;
+  border-color: #65b878;
+}
+.application-overview .rectangle-14 {
+  background-color: #fadb8719;
+  border-color: #fadb87;
+}
+.application-overview .rectangle-15 {
+  background-color: #d9d9d919;
+  border-color: #d9d9d9;
+}
+
+.application-overview .rectangle-5 {
+  background-color: var(--graygray-2-table-header);
+  border: 1px solid;
+  border-color: var(--default-gray-5-border);
+  border-radius: 6px;
+  height: 12px;
+  position: relative;
+  width: 20px;
+}
+
+:root {
+  --collection-1-apps-added: none;
+  --collection-1-row-1: rgba(255, 255, 255, 1);
+  --collection-1-row-2: rgba(255, 255, 255, 1);
+  --collection-1-row-3: rgba(255, 255, 255, 1);
+  --collection-1-row-4: rgba(255, 255, 255, 1);
+  --collection-1-show-detected-apps: initial;
+  --darkblack-100: rgba(0, 0, 0, 1);
+  --daybreak-blueblue-1-selected-background-color: rgba(230, 247, 255, 1);
+  --daybreak-blueblue-3-border: rgba(145, 213, 255, 1);
+  --daybreak-blueblue-6-normal: rgba(24, 144, 255, 1);
+  --default-colorborder: rgba(0, 0, 0, 0.15);
+  --default-colortext: rgba(0, 0, 0, 0.88);
+  --default-colortextsecondary: rgba(0, 0, 0, 0.65);
+  --default-colortexttertiary: rgba(0, 0, 0, 0.45);
+  --default-gray-10-primary-text: var(--default-colortext);
+  --default-gray-5-border: var(--default-colorborder);
+  --default-gray-7-tertiary-text: var(--default-colortexttertiary);
+  --default-gray-8-secondary-text: var(--default-colortextsecondary);
+  --elevation: 0px 3px 6px -4px rgba(0, 0, 0, 0.12), 0px 6px 16px 0px rgba(0, 0, 0, 0.08),
+    0px 9px 28px 8px rgba(0, 0, 0, 0.05);
+  --extratooltip-bg: rgba(0, 0, 0, 0.85);
+  --extrawhite: rgba(255, 255, 255, 1);
+  --graygray-1-white: rgba(255, 255, 255, 1);
+  --graygray-2-table-header: rgba(250, 250, 250, 1);
+  --graygray-3-background: rgba(245, 245, 245, 1);
+  --graygray-5-border: rgba(217, 217, 217, 1);
+  --graygray-7-tertiary-text: rgba(140, 140, 140, 1);
+  --graygray-8-secondary-text: rgba(89, 89, 89, 1);
+  --graygray-9: rgba(67, 67, 67, 1);
+  --magentamagenta-1-colorful-tag-background: rgba(255, 240, 246, 1);
+  --magentamagenta-3-colorful-tag-border: rgba(255, 173, 210, 1);
+  --sonar-body-14px-22px-font-family: "SF Pro Text", Helvetica;
+  --sonar-body-14px-22px-font-size: 14px;
+  --sonar-body-14px-22px-font-style: normal;
+  --sonar-body-14px-22px-font-weight: 400;
+  --sonar-body-14px-22px-letter-spacing: 0px;
+  --sonar-body-14px-22px-line-height: 22px;
+  --sonar-body-bold-14px-22px-font-family: "SF Pro Text", Helvetica;
+  --sonar-body-bold-14px-22px-font-size: 14px;
+  --sonar-body-bold-14px-22px-font-style: normal;
+  --sonar-body-bold-14px-22px-font-weight: 700;
+  --sonar-body-bold-14px-22px-letter-spacing: 0px;
+  --sonar-body-bold-14px-22px-line-height: 22px;
+  --sonar-h2-20px-28px-font-family: "SF Pro Text", Helvetica;
+  --sonar-h2-20px-28px-font-size: 20px;
+  --sonar-h2-20px-28px-font-style: normal;
+  --sonar-h2-20px-28px-font-weight: 700;
+  --sonar-h2-20px-28px-letter-spacing: 0px;
+  --sonar-h2-20px-28px-line-height: 28px;
+  --sonar-label-12px-20px-font-family: "SF Pro Text", Helvetica;
+  --sonar-label-12px-20px-font-size: 12px;
+  --sonar-label-12px-20px-font-style: normal;
+  --sonar-label-12px-20px-font-weight: 400;
+  --sonar-label-12px-20px-letter-spacing: 0px;
+  --sonar-label-12px-20px-line-height: 20px;
+}
+
+/*
+
+To enable a theme in your HTML, simply add one of the following data attributes to an HTML element, like so:
+
+<body data-default-mode="light">
+    <!-- the rest of your content -->
+</body>
+
+You can apply the theme on any DOM node, not just the `body`
+
+*/
+
+[data-default-mode="light"] {
+  --default-colorborder: rgba(0, 0, 0, 0.15);
+  --default-colortext: rgba(0, 0, 0, 0.88);
+  --default-colortextsecondary: rgba(0, 0, 0, 0.65);
+  --default-colortexttertiary: rgba(0, 0, 0, 0.45);
+  --default-gray-10-primary-text: var(--default-colortext);
+  --default-gray-5-border: var(--default-colorborder);
+  --default-gray-7-tertiary-text: var(--default-colortexttertiary);
+  --default-gray-8-secondary-text: var(--default-colortextsecondary);
+}
+
+[data-default-mode="dark"] {
+  --default-colorborder: rgba(66, 66, 66, 1);
+  --default-colortext: rgba(255, 255, 255, 0.85);
+  --default-colortextsecondary: rgba(255, 255, 255, 0.65);
+  --default-colortexttertiary: rgba(255, 255, 255, 0.45);
+  --default-gray-10-primary-text: rgba(255, 255, 255, 1);
+  --default-gray-5-border: rgba(255, 255, 255, 1);
+  --default-gray-7-tertiary-text: rgba(255, 255, 255, 1);
+  --default-gray-8-secondary-text: rgba(255, 255, 255, 1);
 }

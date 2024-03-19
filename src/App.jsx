@@ -6,7 +6,13 @@ import G6 from '@antv/g6';
 // import Graphin from "@antv/graphin";
 import SystemOverview from './SystemOverview'; // Import the 'SystemOverview' component
 import graphData2 from "./graphData2";
+import graphData3 from "./graphData3";
 import graphDataRaw from "./graphData";
+import progress from "./assets/Progress.svg";
+import salesforcecloud from "./assets/Salesforce Cloud.svg"
+
+// TODO Unreview grey section
+// TODO Check on arrows
 
 function App() {
 
@@ -168,6 +174,7 @@ function App() {
       textareaRef.current.style.height = 'auto';
       textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
     }
+    console.log(G6.Arrow.triangle())
   }, []);
 
   useEffect(() => {
@@ -214,6 +221,91 @@ function App() {
 
   return (
     <div className="app">
+      <div className="padding-card">
+      <div className="application-overview">
+      <div className="div-2">
+        <header className="header">
+          <div className="div-3">
+            <div className="frame-2">
+              <div className="text-wrapper-3">Application Overview</div>
+              <button className="button">
+                <div className="div-3">
+                  <img className="icon-2" alt="Icon" src={salesforcecloud} />
+                  <button className="button-2">View Connected Apps Page</button>
+                </div>
+              </button>
+            </div>
+          </div>
+          <div className="API-requests">
+            <div className="header-row">
+              <p className="p">Api Requests, Last 24 Hours</p>
+              {/* <img className="icon" alt="Icon" src="info-circle-outlined.svg" /> */}
+            </div>
+            <div className="calls-row">
+              <div className="used-calls">77,284</div>
+              <div className="max-calls">(of 175,000)</div>
+            </div>
+            <div className="progress-standard">
+              <div className="progress-bar">
+                <img className="progress" alt="Progress" src={progress} />
+              </div>
+              <div className="text-wrapper-4">40%</div>
+            </div>
+          </div>
+        </header>
+        <div className="application-graph">
+        <SystemOverview 
+              title={"System Overview"} 
+              graphDataFiltered={graphData3} 
+              graphRef={graphRef} 
+              layoutOptions={layoutOptions} 
+            />
+          <div className="legend">
+            <div className="frame-7">
+              <div className="frame-7">
+                <div className="text-wrapper-5">Controls</div>
+                <div className="div-3">
+                  <div className="checkbox-inactive" />
+                  <div className="checkbox">Hide Detected Apps</div>
+                </div>
+              </div>
+            </div>
+            <div className="frame-8">
+              <div className="frame-7">
+                <div className="text-wrapper-5">Groups</div>
+                <div className="group-legend">
+                  <div className="div-4">
+                    <div className="rectangle rectangle-10" />
+                    <div className="text-wrapper-6">Product</div>
+                  </div>
+                  <div className="div-4">
+                    <div className="rectangle rectangle-11" />
+                    <div className="text-wrapper-6">Marketing</div>
+                  </div>
+                  <div className="div-4">
+                    <div className="rectangle rectangle-12" />
+                    <div className="text-wrapper-6">Finance</div>
+                  </div>
+                  <div className="div-4">
+                    <div className="rectangle rectangle-13" />
+                    <div className="text-wrapper-6">Sales</div>
+                  </div>
+                  <div className="div-4">
+                    <div className="rectangle rectangle-14" />
+                    <div className="text-wrapper-6">CS</div>
+                  </div>
+                  <div className="div-4">
+                    <div className="rectangle rectangle-15" />
+                    <div className="text-wrapper-6">Unreviewed</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
       <div className="graph-controls card" style={{width:"320px"}}>
         <h2>Graph Controls</h2>
         <div className="controls">
@@ -233,7 +325,6 @@ function App() {
           
           </div>
       </div>
-
       {highComboNodeCounts.map((combo => {
         let graphDataFiltered = {...graphData2};
         // filter combos to only the first x combos (using combo variable)

@@ -26,9 +26,9 @@ const SystemOverview = ({ title, graphDataFiltered, graphRef, layoutOptions }) =
   };
 
   return (
-    <div className="system-overview card" key={title}> 
-        <h2>{title}</h2>
-        {/* <p> {printLinkDistance} </p> */}
+    // <div className="system-overview card" key={title}> */}
+        //{/* // <h2>{title}</h2> */}
+        //{/* <p> {printLinkDistance} </p> */}
         <div className="graph-container">
           <Graphin
             animate
@@ -67,8 +67,7 @@ const SystemOverview = ({ title, graphDataFiltered, graphRef, layoutOptions }) =
             },
             }}
           />
-        </div>
-      </div>
+          </div>
   )
 };
 
