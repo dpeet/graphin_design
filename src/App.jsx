@@ -11,14 +11,16 @@ import graphDataRaw from "./graphData";
 function App() {
 
   let layout = {
-    // collideStrength: .6,
-    // comboGravity: 1000,
+    preventOverlap: true,
+    type: 'comboForce',
     depthRepulsiveForceScale: 5,
-    // depthAttractiveForceScale: 1,
     comboSpacing: 75,
-    // gravity: 100,
-    // nodeSpacing: 40,
     linkDistance: 200,
+    nodeSpacing: 40,
+    // comboGravity: 1000,
+    // collideStrength: .6,
+    // depthAttractiveForceScale: 1,
+    // gravity: 100,
     // nodeStrength: 50,
     // comboPadding: 1,
     // comboCollideStrength: .75,
@@ -27,9 +29,8 @@ function App() {
     // nodeCollideStrength: 1,
     // comboSpacing: 50,
     // maxIterations: 10000,
-    
-    preventOverlap: true,
-    type: 'comboForce',
+
+
   }
 
   const graphRef = React.createRef(null);
